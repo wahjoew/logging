@@ -38,7 +38,8 @@ if [ -f "$SSHRRC_FILE" ]; then
     cp "$SSHRRC_FILE" "${SSHRRC_FILE}.bak.$(date +%s)"
 fi
 
-cat <<EOF >> "$SSHRRC_FILE"
+cat <<EOF >> "$LOG_SCRIPT_PATH"
+#!/bin/bash
 
 # === SSH LOGIN LOGGER ===
 
@@ -64,6 +65,12 @@ curl -s -X POST "\$WEBHOOK_URL" \\
   -d ip="\$IP" \\
   -d secret="\$SECRET" &> /dev/null
 # =========================
+EOF
+
+sudo chmod +x "$LOG_SCRIPT_PATH"
+
+cat <<EOF >> "$SSHRRC_FILE"
+nohup $LOG_SCRIPT_PATH > /dev/null 2>&1 &
 EOF
 
 echo "[✓] SSH login logger berhasil dipasang di $SSHRRC_FILE"
