@@ -3,7 +3,8 @@
 # URL endpoint PHP yang mengecek SECRET
 CHECK_URL="https://alpha.helinium.net/cek-secret.php"
 
-read -p "Masukkan CODE key: " code
+read -sp "Masukkan CODE key: " code
+echo
 
 # Cek apakah input kosong
 if [ -z "$code" ]; then
