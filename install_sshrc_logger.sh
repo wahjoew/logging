@@ -5,6 +5,7 @@ CHECK_URL="https://alpha.helinium.net/cek-secret.php"
 
 echo -n "Masukkan CODE key: "
 read -s code < /dev/tty
+echo
 
 # Cek apakah input kosong
 if [ -z "$code" ]; then
